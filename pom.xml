@@ -13,7 +13,6 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 
-
 		<sonar.projectKey>
 			fssa-batch3_sec_c_sec_c_saran.murugan__corejava_project_2</sonar.projectKey>
 		<sonar.organization>fssa-batch3</sonar.organization>
@@ -56,21 +55,6 @@
 		</dependency>
 
 
-		<!-- <dependency>
-			<groupId>com.fssa.corejava</groupId>
-		<artifactId>saran-mvncore-project</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-		<groupId>com.fssa.msr</groupId>
-		<artifactId>first-mvn-project-msr</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		</dependency> -->
-		<dependency>
-			<groupId>com.fssa.corejava</groupId>
-			<artifactId>saran-mvncore-project</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
