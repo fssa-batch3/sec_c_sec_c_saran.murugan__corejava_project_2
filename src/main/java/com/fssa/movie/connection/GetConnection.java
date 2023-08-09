@@ -34,9 +34,5 @@ public class GetConnection {
         return con;
     }
 	
-	public static void main(String[] args)  {
-		
-		 getConnection();
-       		
-		}
+	
 }

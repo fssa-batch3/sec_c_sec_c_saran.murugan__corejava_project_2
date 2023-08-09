@@ -1,31 +1,29 @@
 package com.fssa.movie.DAO;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import com.fssa.movie.connection.*;
 import com.fssa.movie.daoException.DAOExceptions;
 import com.fssa.movie.daoException.DaoExceptionMessage;
 import com.fssa.movie.model.Movie;
 import com.fssa.movie.validatorException.MovieValidateException;
-import day11.solved.ConnectionUtil;
 
 
 public class MovieDAO {
-    private static final String URL = "jdbc:mysql://Localhost:3306/letz_show";
-    private static final String USER = "root";
-    private static final String PASSWORD = "123456";
-
+	
+//    private static final String URL = "jdbc:mysql://Localhost:3306/letz_show";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "123456";
     public static boolean createMovie(Movie movie) throws DAOExceptions {
-        try (Connection connection = DriverManager.getConnection(URL,USER, PASSWORD)) {
+    	Connection connection=GetConnection.getConnection();
+        try  {
             // Create insert statement
             String insertQuery = "INSERT INTO movie_details (movie_id,movie_title, language, format, certificate, genre, " +
                                  "durationHours, durationMinutes, durationSeconds, description, releaseDate,movie_image_url,movie_banner_url)" +
                                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
-            
+      
 //            String query ="SELECT * FROM MOVIE_DETAILS WHERE MOVIE_NAME = ?";
 //            PreparedStatement.setString()
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -43,7 +41,6 @@ public class MovieDAO {
                 preparedStatement.setDate(11, java.sql.Date.valueOf(movie.getReleaseDate()));
                 preparedStatement.setString(12, movie.getMovieImage());
                 preparedStatement.setString(13, movie.getMovieBanner());
-
 
                 // Execute insert statement
                 int rowsInserted = preparedStatement.executeUpdate();
@@ -65,7 +62,7 @@ public class MovieDAO {
     
         public static boolean updateMovies(Movie movie) throws MovieValidateException,SQLException{
         	
-        	  try(Connection conn = DriverManager.getConnection(URL,USER, PASSWORD)){
+        	  try(Connection conn=GetConnection.getConnection()){
         		  
         		  try(PreparedStatement pstmt = conn.prepareStatement("UPDATE movie_details SET movie_title=?, language=?, format=?, certificate=?, genre=? , durationHours=?, durationMinutes=?, durationSeconds=?, description=?, releaseDate=?,movie_image_url=?,movie_banner_url=? WHERE movie_id=?")){
         			  
@@ -99,7 +96,7 @@ public class MovieDAO {
     
         
         public static boolean deleteMovies(int movieId) throws  MovieValidateException,SQLException {
-            try (Connection conn = ConnectionUtil.getConnection()) {
+            try (Connection conn=GetConnection.getConnection()) {
                 try (PreparedStatement pstmt = conn.prepareStatement("DELETE FROM movie_details WHERE movie_id=?")) {
                     pstmt.setInt(1, movieId);
                     int rowsAffected = pstmt.executeUpdate();
@@ -117,7 +114,7 @@ public class MovieDAO {
             public static Movie showMovieByName(String name) throws MovieValidateException, SQLException {
                 Movie movie = null;
                 String READ_QUERY = "SELECT * FROM movie_details WHERE movie_title = ?";
-                try (Connection conn = ConnectionUtil.getConnection()) {
+                try (Connection conn=GetConnection.getConnection()) {
                     try (PreparedStatement pstmt = conn.prepareStatement(READ_QUERY)) {
                         pstmt.setString(1, name);
                         try (ResultSet rs = pstmt.executeQuery()) {
@@ -144,16 +141,16 @@ public class MovieDAO {
                 return movie;
             }
 
-            public static void main(String[] args) throws MovieValidateException, SQLException {
-                Movie movie = showMovieByName("Master");
-                if (movie != null) {
-                    System.out.println("Movie ID: " + movie.getMovieId());
-                    System.out.println("Movie Title: " + movie.getMovieName());
-                    // Print other movie details
-                } else {
-                    System.out.println("Movie not found.");
-                }
-            }
+//            public static void main(String[] args) throws MovieValidateException, SQLException {
+//                Movie movie = showMovieByName("CaptainMiller");
+//                if (movie != null) {
+//                    System.out.println("Movie ID: " + movie.getMovieId());
+//                    System.out.println("Movie Title: " + movie.getMovieName());
+//                    // Print other movie details
+//                } else {
+//                    System.out.println("Movie not found.");
+//                }
+//            }
 
 }
 
