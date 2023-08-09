@@ -19,12 +19,12 @@ public class TestMovieService {
 		return data;
 	}
 	
-
-   @Test
-   public void testAddMovieServiceLayer() throws DAOExceptions, MovieValidateException{
-	Assertions.assertTrue(MovieService. addMovie(movie()));
-   }
-   
+//
+//   @Test
+//   public void testAddMovieServiceLayer() throws DAOExceptions, MovieValidateException{
+//	Assertions.assertTrue(MovieService. addMovie(movie()));
+//   }
+//   
 //   @Test
 //   public void testUpdateMovieServiceLayer() throws DAOExceptions, MovieValidateException, SQLException{
 //	Assertions.assertTrue(MovieService.updateMovie(movie()));

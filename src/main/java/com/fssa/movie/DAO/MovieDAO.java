@@ -133,7 +133,6 @@ public class MovieDAO {
                                 movie.setReleaseDate(rs.getDate("releaseDate").toLocalDate());
                                 movie.setMovieImage(rs.getString("movie_image_url"));
                                 movie.setMovieBanner(rs.getString("movie_banner_url"));
-
                             }
                         }
                     }
