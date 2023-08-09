@@ -14,7 +14,7 @@ import com.fssa.movie.validatorException.MovieValidateException;
 public class TestMovieService {
 	
 	public static Movie movie() {
-		Movie data=new Movie(7,"leo","Tamil","2D","UA","Action,thriller",2,40,10,"leo is the action movie and lead role is vijay ",LocalDate.of(2023, 7, 21),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg","https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg");
+		Movie data=new Movie(8,"Vaathi","Tamil","2D","UA","Action,thriller",2,40,10,"leo is the action movie and lead role is vijay ",LocalDate.of(2023, 7, 21),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg","https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg");
     	
 		return data;
 	}

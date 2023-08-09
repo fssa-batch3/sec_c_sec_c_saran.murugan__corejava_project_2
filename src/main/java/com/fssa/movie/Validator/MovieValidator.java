@@ -1,7 +1,6 @@
 package com.fssa.movie.Validator;
 
 import java.time.LocalDate;
-import java.util.*;
 import com.fssa.movie.model.Movie;
 import com.fssa.movie.validatorException.MovieValidateException;
 import com.fssa.movie.validatorException.MovieValidatorErrors;
