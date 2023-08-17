@@ -2,7 +2,7 @@ package com.fssa.movie.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
+
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -31,8 +31,7 @@ public class GetConnection {
         } catch (Exception e) {
             throw new RuntimeException("Unable to connect to the database");
         }
-        return con;
-    }
-	
+        return con;             
+    }		
 	
 }

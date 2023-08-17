@@ -1,8 +1,6 @@
 package com.fssa.movie.Validator;
 
 import java.time.LocalDate;
-
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import com.fssa.movie.model.Movie;
@@ -13,7 +11,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 
  class TestMovieValidator { 
 
-//	Movie movie = new Movie(0,null, null, null, null, null, 0, 0, 0, null, null,null,null);
+
 			
 			
    @Test
@@ -34,7 +32,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateName(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_NAME, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_NAME_NULL, ex.getMessage());
 		}
 	}
 	
@@ -44,7 +42,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateName("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_NAME, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_NAME_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -54,7 +52,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateName("y");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_NAME, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_NAME_LENGTH, ex.getMessage());
 		}
     }
 	
@@ -70,7 +68,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateLanguage(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE_NULL, ex.getMessage());
 		}
 	}
 	
@@ -80,7 +78,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateLanguage("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -90,7 +88,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateLanguage("y");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE_LENGTH, ex.getMessage());
 		}
     }
 	 
@@ -107,7 +105,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateFormat(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT_NULL, ex.getMessage());
 		}
 	}
 	
@@ -117,7 +115,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateFormat("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -127,7 +125,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateFormat("D");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT_LENGTH, ex.getMessage());
 		}
     }
 	 
@@ -137,7 +135,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateFormat("2d");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_FORMAT_UPPERCASE, ex.getMessage());
 		}
     }
 
@@ -153,7 +151,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateCertificate(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE_NULL, ex.getMessage());
 		}
 	}
 	
@@ -163,7 +161,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateCertificate("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE_EMPTY, ex.getMessage());
 		}
     }
 		
@@ -173,7 +171,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateCertificate("Ua");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE_UPPERCASE, ex.getMessage());
 		}
     }
 
@@ -191,7 +189,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateGenre(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_GENRE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_GENRE_NULL, ex.getMessage());
 		}
 	}
 	
@@ -201,7 +199,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateGenre("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_GENRE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_GENRE_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -211,7 +209,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateGenre("ac");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_GENRE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_GENRE_LENGTH, ex.getMessage());
 		}
     }
 	 
@@ -230,7 +228,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateDescription(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION_NULL, ex.getMessage());
 		}
 	}
 	
@@ -240,7 +238,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateDescription("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -250,7 +248,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateDescription("y");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION_LENGTH, ex.getMessage());
 		}
     }
 	 
@@ -332,7 +330,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateMovieImage(null);
 			Assertions.fail("testNullMovieImage method failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_IMAGE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_IMAGE_NULL, ex.getMessage());
 		}
 	}
 	
@@ -342,7 +340,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateMovieImage("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_IMAGE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_IMAGE_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -351,7 +349,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
     	try {
 			MovieValidator.validateMovieImage("00348725-1680776467");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_IMAGE, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_IMAGE_LENGTH, ex.getMessage());
 		}
     }
 
@@ -367,7 +365,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateMovieBanner(null);
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_BANNER, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_BANNER_NULL, ex.getMessage());
 		}
 	}
 	
@@ -377,7 +375,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateMovieBanner("");
 			Assertions.fail("Validatename failed");
 		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_BANNER, ex.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_BANNER_EMPTY, ex.getMessage());
 		}
     }
 	
@@ -387,7 +385,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			MovieValidator.validateMovieBanner("1680776467");
 		}
 		catch(MovieValidateException ab) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_BANNER ,ab.getMessage());
+			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_BANNER_LENGTH ,ab.getMessage());
 		}
 	}
 

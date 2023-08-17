@@ -5,6 +5,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import com.fssa.letzshow.util.*;
+import java.util.*;
+
 import com.fssa.movie.connection.*;
 import com.fssa.movie.daoException.DAOExceptions;
 import com.fssa.movie.daoException.DaoExceptionMessage;
@@ -12,11 +16,8 @@ import com.fssa.movie.model.Movie;
 import com.fssa.movie.validatorException.MovieValidateException;
 
 
+
 public class MovieDAO {
-	
-//    private static final String URL = "jdbc:mysql://Localhost:3306/letz_show";
-//    private static final String USER = "root";
-//    private static final String PASSWORD = "123456";
     public static boolean createMovie(Movie movie) throws DAOExceptions {
     	Connection connection=GetConnection.getConnection();
         try  {
@@ -25,8 +26,8 @@ public class MovieDAO {
                                  "durationHours, durationMinutes, durationSeconds, description, releaseDate,movie_image_url,movie_banner_url)" +
                                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?)";
       
-//            String query ="SELECT * FROM MOVIE_DETAILS WHERE MOVIE_NAME = ?";
-//            PreparedStatement.setString()
+
+
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 // Set values for the prepared statement
                 preparedStatement.setInt(1, movie.getMovieId());
@@ -51,7 +52,7 @@ public class MovieDAO {
                     throw new DAOExceptions("Failed to insert the movie into the database.");
                 }
             }
-            System.out.println("succesfull");
+            CustomLogger.info("succesfull");
         } catch (SQLException e) {
             // Handle any database-related errors
             throw new DAOExceptions("Database error occurred: " + e.getMessage(), e);
@@ -83,8 +84,8 @@ public class MovieDAO {
 
                       int rowsAffected = pstmt.executeUpdate();
                       if (rowsAffected > 0) {
-                          System.out.println("Updated Successfully");
-                          return true; // Book updated successfully
+                    	  CustomLogger.info("Movie Updated Successfully");
+                          return true; // Movie updated successfully
                       }
                       else {
                           throw new MovieValidateException(DaoExceptionMessage.UPDATE_MOVIE);
@@ -102,55 +103,63 @@ public class MovieDAO {
                     pstmt.setInt(1, movieId);
                     int rowsAffected = pstmt.executeUpdate();
                     if (rowsAffected > 0) {
-                        System.out.println("Deleted Successfully");
-                        return true; // Book deleted successfully
+                    	CustomLogger.info("movie Successfully");
+                        return true; // movie deleted successfully
                     } else {
-                        System.out.println("Failed to delete the book");
-                        return false; // Failed to delete the book
+                    	CustomLogger.info("Failed to delete the movie");
+                        return false; // Failed to delete the movie
                     }
                 }
             }
         }
 
-            public static Movie showMovieByName(String name) throws MovieValidateException, SQLException {
-                Movie movie = null;
+            public static List<Movie> showMovieByName(String name) throws MovieValidateException, SQLException {
+            	
+            	List<Movie> movieList = new ArrayList<Movie>();
+            
+               
                 String READ_QUERY = "SELECT * FROM movie_details WHERE movie_title = ?";
                 try (Connection conn=GetConnection.getConnection()) {
                     try (PreparedStatement pstmt = conn.prepareStatement(READ_QUERY)) {
                         pstmt.setString(1, name);
                         try (ResultSet rs = pstmt.executeQuery()) {
-                            while (rs.next()) {
-                                movie = new Movie();
-                                movie.setMovieId(rs.getInt("movie_id"));
-                                movie.setMovieName(rs.getString("movie_title"));
-                                movie.setLanguage(rs.getString("language"));
-                                movie.setFormat(rs.getString("format"));
-                                movie.setCertificate(rs.getString("certificate"));
-                                movie.setGenre(rs.getString("genre"));
-                                movie.setDurationHours(rs.getInt("durationHours"));
-                                movie.setDurationMinutes(rs.getInt("durationMinutes"));
-                                movie.setDurationSeconds(rs.getInt("durationSeconds"));
-                                movie.setDescription(rs.getString("description"));
-                                movie.setReleaseDate(rs.getDate("releaseDate").toLocalDate());
-                                movie.setMovieImage(rs.getString("movie_image_url"));
-                                movie.setMovieBanner(rs.getString("movie_banner_url"));
+                            while (rs.next()){
+                                int movieId = rs.getInt("movie_id");
+                                String title = rs.getString("movie_title");
+                                String language = rs.getString("language");
+                                String format = rs.getString("format");
+                                String certificate = rs.getString("certificate");
+                                String genre = rs.getString("genre");
+                                int  durationHour = rs.getInt("durationHours");
+                                int  durationMinutes = rs.getInt("durationMinutes");
+                                int  durationSeconds = rs.getInt("durationSeconds");
+                                String description= rs.getString("description");
+                                LocalDate releaseDate = rs.getDate("releaseDate").toLocalDate();
+                                String movieImage = rs.getString("movie_image_url");
+                                String bannerImage = rs.getString("movie_banner_url");
+
+                                Movie movie = new Movie();
+                               // movie = new Movie();
+                                movie.setMovieId(movieId);
+                                movie.setMovieName(title);
+                                movie.setLanguage(language);
+                                movie.setFormat(format);
+                                movie.setCertificate(certificate);
+                                movie.setGenre(genre);
+                                movie.setDurationHours(durationHour);
+                                movie.setDurationMinutes(durationMinutes);
+                                movie.setDurationSeconds(durationSeconds);
+                                movie.setDescription(description);
+                                movie.setReleaseDate(releaseDate);
+                                movie.setMovieImage(movieImage);
+                                movie.setMovieBanner(bannerImage);
+                                CustomLogger.info(movie.getMovieId()+"|"+movie.getMovieName()+"|"+movie.getLanguage()+"|"+movie.getFormat()+"|"+movie.getCertificate()+"|"+movie.getGenre()+"|"+movie.getDurationHours()+"|"+movie.getDurationMinutes()+"|"+movie.getDurationSeconds()+"|"+movie.getDescription()+"|"+movie.getReleaseDate()+"|"+movie.getMovieImage()+"|"+movie.getMovieBanner());
                             }
                         }
                     }
                 }
-                return movie;
+                return movieList;
             }
-
-//            public static void main(String[] args) throws MovieValidateException, SQLException {
-//                Movie movie = showMovieByName("CaptainMiller");
-//                if (movie != null) {
-//                    System.out.println("Movie ID: " + movie.getMovieId());
-//                    System.out.println("Movie Title: " + movie.getMovieName());
-//                    // Print other movie details
-//                } else {
-//                    System.out.println("Movie not found.");
-//                }
-//            }
 
 }
 
