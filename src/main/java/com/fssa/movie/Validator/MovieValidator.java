@@ -1,6 +1,7 @@
 package com.fssa.movie.Validator;
 
 import java.time.LocalDate;
+
 import com.fssa.movie.model.Movie;
 import com.fssa.movie.validatorException.MovieValidateException;
 import com.fssa.movie.validatorException.MovieValidatorErrors;
@@ -13,12 +14,9 @@ public class MovieValidator {
 		if (movie == null) {
 			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_NULL);
 		}
+	
 		validateName(movie.getMovieName());
-		validateLanguage(movie.getLanguage());
-		validateFormat(movie.getFormat());
-		validateCertificate(movie.getCertificate());
 		validateDescription(movie.getDescription());
-		validateGenre(movie.getGenre());
 		validateReleaseDate(movie.getReleaseDate());
 		validateDurationHours(movie.getDurationHours());
 		validateDurationMinutes(movie.getDurationMinutes());
@@ -26,66 +24,29 @@ public class MovieValidator {
 		return true;
 
 	}
+	
 
 	public static boolean validateName(String name) throws MovieValidateException {
 		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
+		// Check if name has length of 2.
+	
 		if (name == null || "".equals(name) || name.length() < 2) {
 			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_NAME);
 		}
 		return true;
 	}
 
-	public static boolean validateLanguage(String language) throws MovieValidateException {
-		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
-		if (language == null || "".equals(language) || language.length() < 3) {
-			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_LANGUAGE);
-		}
-		return true;
-	}
-
-	public static boolean validateFormat(String format) throws MovieValidateException {
-		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
-		if (format == null || "".equals(format.trim()) || format.length() < 2 || !format.equals(format.toUpperCase())) {
-			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_FORMAT);
-		}
-		return true;
-	}
-
-	
-
-	public static boolean validateCertificate(String certificate) throws MovieValidateException {
-		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
-		if (certificate == null || "".equals(certificate.trim()) || certificate.length() < 1||!certificate.equals(certificate.toUpperCase())) {
-			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_CERTIFICATE);
-		}
-		return true;
-	}
-
 	public static boolean validateDescription(String description) throws MovieValidateException {
-		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
-		if (description == null || "".equals(description) || description.length() < 3) {
+		// Check for description,description should have alphabets and some special characters.
+		// For Simplicity, Check if name has length of 10.
+		if (description == null || "".equals(description) || description.length() < 10) {
 			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_DESCRIPTION);
 		}
 		return true;
 	}
-
-	public static boolean validateGenre(String genre) throws MovieValidateException {
-		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
-		if (genre == null || "".equals(genre) || genre.length() < 3) {
-			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_GENRE);
-		}
-		return true;
-	}
-	
 	public static boolean validateMovieImage(String movieImage) throws MovieValidateException {
-        // Check for name, name should only have alphabets
-        // For Simplicity, Check if name has a length of 1.
+        // Check for movie image url, movie image url should have alpahbets and some characters.
+        // For Simplicity, Check if movie image url are match with image re3gex pattern.
         if (movieImage == null || movieImage.isEmpty()) {
             throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_IMAGE);
         }
@@ -100,8 +61,8 @@ public class MovieValidator {
     }
 
 	public static boolean validateMovieBanner(String movieBanner) throws MovieValidateException {
-        // Check for name, name should only have alphabets
-        // For Simplicity, Check if name has a length of 1.
+        // Check for banner image url, banner image url should have alpahbets and some characters.
+        // For Simplicity, Check if banner image url are match with image re3gex pattern.
         if ( movieBanner == null || movieBanner.isEmpty()) {
             throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_BANNER );
         }
@@ -154,7 +115,6 @@ public class MovieValidator {
 	}
 
 	static LocalDate today = LocalDate.now();
-
 	// Expected format
 
 	public static boolean validateReleaseDate(LocalDate releaseDate) throws MovieValidateException{

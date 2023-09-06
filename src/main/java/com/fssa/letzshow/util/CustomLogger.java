@@ -6,8 +6,8 @@ public class CustomLogger {
 	}
 	private static boolean isDebugEnabled = true;
 
-	public static void info(String message) {
-		System.out.println(message);
+	public static void info(Object obj) {
+		System.out.println(obj);
 	}
 
 	public static void debug(String message) {

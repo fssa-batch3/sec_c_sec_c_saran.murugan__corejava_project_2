@@ -9,13 +9,13 @@ public class MovieValidateException extends Exception {
 		super(msg);
 	}
 
-//	public MovieValidateException(Throwable te) {
-//		super(te);
-//	}
-//
-//	public MovieValidateException(String msg, Throwable te) {
-//
-//		super(msg, te);
-//	}
+	public MovieValidateException(Throwable te) {
+		super(te);
+	}
+
+	public MovieValidateException(String msg, Throwable te) {
+
+		super(msg, te);
+	}
 
 }
