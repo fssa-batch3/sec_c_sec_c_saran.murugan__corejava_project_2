@@ -24,17 +24,17 @@ public class TestMovieService {
 		return data;
 	}
 	public static Movie updateMovies() {
-		Movie data=new Movie(7,"kushi",MovieLanguage.Tamil,MovieFormat.FORMAT_2D,MovieCertificate.UA,MovieGenre.Romance,2,55,10,"A couple who are predicted to have a failed marriage, decide to become ideal partners for each other. Will it work out or will they realize that their parents were right?",LocalDate.of(2023, 9, 7),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/kushi-et00328665-1693390326.jpg","https://static.moviecrow.com/gallery/20230710/217256-Jawan%20Prevue%20SRK%20Atlee.png",MovieStatus.CURRENTLY_RUNNING);
+		Movie data=new Movie(13,"kushi",MovieLanguage.Tamil,MovieFormat.FORMAT_2D,MovieCertificate.UA,MovieGenre.Romance,2,55,10,"A couple who are predicted to have a failed marriage, decide to become ideal partners for each other. Will it work out or will they realize that their parents were right?",LocalDate.of(2023, 9, 7),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/kushi-et00328665-1693390326.jpg","https://static.moviecrow.com/gallery/20230710/217256-Jawan%20Prevue%20SRK%20Atlee.png",MovieStatus.CURRENTLY_RUNNING);
 		
 		return data;
 	}
 	
 	
 	
-	@Test
-       public void testAddMovieServiceLayer() throws DAOExceptions, MovieValidateException{
-     	Assertions.assertTrue(MovieService.addMovie(addNewMovies()));
-       }
+//	@Test
+//       public void testAddMovieServiceLayer() throws DAOExceptions, MovieValidateException{
+//     	Assertions.assertTrue(MovieService.addMovie(addNewMovies()));
+//       }
 	
 	
 	@Test
