@@ -11,15 +11,15 @@ public class GetConnection {
 
             String url, userName, passWord;
             
-//            url = "jdbc:mysql://Localhost:3306/letz_show";
-//            userName = "root";
-//            passWord = "123456";
-//            
+            url = "jdbc:mysql://Localhost:3306/letz_show";
+            userName = "root";
+            passWord = "123456";
+            
 
-
-            url = System.getenv("DATABASE_HOST");
-            userName = System.getenv("DATABASE_USERNAME");
-            passWord = System.getenv("DATABASE_PASSWORD");
+//
+//            url = System.getenv("DATABASE_HOST");
+//            userName = System.getenv("DATABASE_USERNAME");
+//            passWord = System.getenv("DATABASE_PASSWORD");
         	
          
         try {
