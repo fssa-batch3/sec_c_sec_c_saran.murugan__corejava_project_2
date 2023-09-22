@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import com.fssa.letzshow.util.CustomLogger;
 import com.fssa.movie.connection.GetConnection;
 import com.fssa.movie.daoException.DAOExceptions;

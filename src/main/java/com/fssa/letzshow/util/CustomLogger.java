@@ -1,9 +1,10 @@
 package com.fssa.letzshow.util;
 
 public class CustomLogger {
-	private CustomLogger() {
+	public CustomLogger() {
 		super();
 	}
+
 	private static boolean isDebugEnabled = true;
 
 	public static void info(Object obj) {
@@ -16,5 +17,4 @@ public class CustomLogger {
 		}
 	}
 
-	
 }
