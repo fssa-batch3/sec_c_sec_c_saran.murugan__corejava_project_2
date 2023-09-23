@@ -19,7 +19,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			
    @Test
     void testMovievalidate() throws MovieValidateException{
-	   Movie mv = new Movie( "leoBloodysweet",MovieLanguage.Tamil,MovieFormat.FORMAT_2D,MovieCertificate.UA,MovieGenre.Action,10, 20, 10, "this movie name is leo this about action movie", LocalDate.of(2023, 7, 21),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg","https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg",MovieStatus.UPCOMING);
+	   Movie mv = new Movie( "leoBloodysweet",MovieLanguage.ENGLISH,MovieFormat._2D,MovieCertificate.UA,MovieGenre.ACTION,10, 20, 10, "this movie name is leo this about action movie", LocalDate.of(2023, 7, 21),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg","https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg",MovieStatus.UPCOMING);
 	  Assertions.assertTrue(MovieValidator.validate(mv));
    }
 	

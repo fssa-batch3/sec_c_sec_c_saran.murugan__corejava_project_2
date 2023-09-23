@@ -31,7 +31,7 @@ public class Movie {
 
   
 	//default constructor
-	public Movie() {
+	public Movie(int movieId2, String title, String language2, String format2, String certificate2, String genre2, int durationHours2, int durationMinutes2, int durationSeconds2, String description2, String releaseDate2, String movieImageUrl, String movieBannerUrl) {
 
 	}
 
@@ -73,6 +73,10 @@ public class Movie {
 		this.movieImage = imageUrl;
 		this.movieBanner = movieBanner;
 		this.status= status;
+	}
+
+	public Movie() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

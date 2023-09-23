@@ -2,6 +2,7 @@ package com.fssa.movie.DAO;
 
 
 import java.sql.Connection;
+import java.util.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -211,7 +212,63 @@ public class MovieDAO {
         }
         
       
+	        public static int getMovieIdByName(String movieName) throws DAOExceptions, SQLException {
+	    		try (Connection connection = GetConnection.getConnection()) {
+	    			// Create update statement using task id
+	    			String query = "SELECT movie_id FROM movie_details WHERE movie_title = ? ";
+	    			try (PreparedStatement pst = connection.prepareStatement(query)) {
+	    				pst.setString(1, movieName);
+	    				ResultSet rs = pst.executeQuery();
+	    				// .executeQuery() .. returns result set
+	    				// .executeUpdate() .. returns no of rows affected
+	    				int id = 0;
+	    				while (rs.next()) {
+	    					id = rs.getInt("movie_id");
+	    				}
+	    				return id;
+	    			}
+	    		} catch (SQLException e) {
+	    			throw new DAOExceptions("not get movieid by moviename", e);
+	    		}
+    	}
 
+	        public static Movie showMovieById(int id) throws DAOExceptions {
+	            try (Connection connection = GetConnection.getConnection()) {
+	                String query = "SELECT * FROM movie_details WHERE movie_id = ?";
+	                try (PreparedStatement statement = connection.prepareStatement(query)) {
+	                    statement.setInt(1, id);
+	                    try (ResultSet resultSet = statement.executeQuery()) {
+	                        if (resultSet.next()) {
+	                            int movieId = resultSet.getInt("id");
+	                            String title = resultSet.getString("movie_title");
+	                            String language = resultSet.getString("language");
+	                            String format = resultSet.getString("format");
+	                            String certificate = resultSet.getString("certificate");
+	                            String genre = resultSet.getString("genre");
+	                            int durationHours = resultSet.getInt("duration_hours");
+	                            int durationMinutes = resultSet.getInt("duration_minutes");
+	                            int durationSeconds = resultSet.getInt("duration_seconds");
+	                            String description = resultSet.getString("description");
+	                            String releaseDate = resultSet.getString("release_date");
+	                            String movieImageUrl = resultSet.getString("movie_image_url");
+	                            String movieBannerUrl = resultSet.getString("movie_banner_url");
+
+	                            // Create a Movie object with the retrieved information
+	                            Movie movie = new Movie(
+	                                movieId, title, language, format, certificate, genre, 
+	                                durationHours, durationMinutes, durationSeconds, description,
+	                                releaseDate, movieImageUrl, movieBannerUrl
+	                            );
+
+	                            return movie;
+	                        }
+	                    }
+	                }
+	            } catch (SQLException e) {
+	                throw new DAOExceptions(e.getMessage());
+	            }
+	            return null; // Return null if movie not found
+	        }
 
 		
         
