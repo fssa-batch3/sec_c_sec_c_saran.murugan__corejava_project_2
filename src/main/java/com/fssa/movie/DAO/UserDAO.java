@@ -25,7 +25,9 @@ public class UserDAO {
 				int row = pst.executeUpdate();
 
 				return (row > 0);
+
 			}
+
 		} catch (SQLException e) {
 			throw new DAOExceptions(e);
 		}

@@ -7,10 +7,9 @@ public enum MovieFormat {
 	    BLU_RAY("Blu-ray"),
 	    DIGITAL("Digital"),
 	    VHS("VHS"),
-	    STREAMING("Streaming"),
-	    _4K("4K Ultra HD"),
-	    _2D("2D"),
-	    _3D("3D"),
+	    FORMAT_4K("4K"),
+	    FORMAT_2D("2D"),
+	    FORMAT_3D("3D"),
 	    DOLBY_ATMOS("Dolby Atmos");
 
 	    private final String value;

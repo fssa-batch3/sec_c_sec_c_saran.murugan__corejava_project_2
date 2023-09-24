@@ -39,7 +39,7 @@ public class UserValidator {
 	}
 
 	public static boolean validateNumber(String number) throws UserValidateException {
-		if (number == null || !number.matches("\\d{10}")) {
+		if (number == null || number.trim().isEmpty()|| !number.matches("\\d{10}")) {
 			throw new UserValidateException(UserValidatorErrors.INVALID_NUMBER);
 		}
 		return true;

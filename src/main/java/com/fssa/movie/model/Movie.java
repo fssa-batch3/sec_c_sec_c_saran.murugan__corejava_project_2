@@ -1,5 +1,8 @@
 package com.fssa.movie.model;
 
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 
@@ -78,8 +81,47 @@ public class Movie {
 	public Movie() {
 		// TODO Auto-generated constructor stub
 	}
+    public Movie(ResultSet resultSet) throws SQLException {
+        // Populate fields from ResultSet
+        this.movieId = resultSet.getInt("movie_id");
+        this.movieName = resultSet.getString("movie_title");
+        this.language = MovieLanguage.fromValue(resultSet.getString("language"));
+        this.format = MovieFormat.fromValue(resultSet.getString("format"));
+        this.certificate = MovieCertificate.fromValue(resultSet.getString("certificate"));
+        this.genre = MovieGenre.fromValue(resultSet.getString("genre"));
+        this.durationHours = resultSet.getInt("durationHours");
+        this.durationMinutes = resultSet.getInt("durationMinutes");
+        this.durationSeconds = resultSet.getInt("durationSeconds");
+        this.description = resultSet.getString("description");
+        this.releaseDate = resultSet.getDate("releaseDate").toLocalDate();
+        this.movieImage = resultSet.getString("movie_image_url");
+        this.movieBanner = resultSet.getString("movie_banner_url");
+    }
 
-	@Override
+    // Getters for Movie class (generated automatically)
+
+    // Example of a getter:
+   
+    public String toString1() {
+        return "Movie{" +
+                "movieId=" + movieId +
+                ", title='" + movieName + '\'' +
+                ", language='" + language + '\'' +
+                ", format='" + format + '\'' +
+                ", certificate='" + certificate + '\'' +
+                ", genre='" + genre + '\'' +
+                ", durationHours=" + durationHours +
+                ", durationMinutes=" + durationMinutes +
+                ", durationSeconds=" + durationSeconds +
+                ", description='" + description + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", movieImageUrl='" + movieImage + '\'' +
+                ", movieBannerUrl='" + movieBanner + '\'' +
+                '}';
+    }
+
+
+
 	public String toString() {
 		return "Movie [movieName=" + movieName + ", language=" + language + ", format=" + format + ", certificate="
 				+ certificate + ", genre=" + genre + ", durationHours=" + durationHours + ", durationMinutes="

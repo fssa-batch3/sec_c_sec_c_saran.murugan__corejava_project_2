@@ -2,12 +2,12 @@ package com.fssa.movie.model;
 
 
 public enum MovieCertificate {
-    U("Universal"),
-    UA("Universal Adult"),
-    A("Adult"),
-    S("Special"),
-    R("Restricted"),
-    NR("Not Rated");
+    UNIVERSAL("U"),
+    UNIVERSAL_ADULT("UA"),
+    ADULT("A"),
+    SPECIAL("S"),
+    RESTRICTED("R"),
+    NOT_RATED("NR");
 
     private final String value;
 

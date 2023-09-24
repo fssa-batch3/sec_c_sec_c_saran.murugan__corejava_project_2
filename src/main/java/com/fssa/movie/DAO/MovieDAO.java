@@ -33,10 +33,10 @@ public class MovieDAO {
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 // Set values for the prepared statement
                 preparedStatement.setString(1, movie.getMovieName());
-                preparedStatement.setString(2, movie.getLanguage().toString());
-                preparedStatement.setString(3, movie.getFormat().toString());
-                preparedStatement.setString(4, movie.getCertificate().toString());
-                preparedStatement.setString(5, movie.getGenre().toString());
+                preparedStatement.setString(2, movie.getLanguage().getValue());
+                preparedStatement.setString(3, movie.getFormat().getValue());
+                preparedStatement.setString(4, movie.getCertificate().getValue());
+                preparedStatement.setString(5, movie.getGenre().getValue());
                 preparedStatement.setInt(6, movie.getDurationHours());
                 preparedStatement.setInt(7, movie.getDurationMinutes());
                 preparedStatement.setInt(8, movie.getDurationSeconds());
@@ -70,10 +70,10 @@ public class MovieDAO {
         		  try(PreparedStatement pstmt = conn.prepareStatement("UPDATE movie_details SET movie_title=?, language=?, format=?, certificate=?, genre=? , durationHours=?, durationMinutes=?, durationSeconds=?, description=?, releaseDate=?,movie_image_url=?,movie_banner_url=? ,status=? WHERE movie_id=?")){
         			  
         			  pstmt.setString(1, movie.getMovieName());
-        			  pstmt.setString(2, movie.getLanguage().toString());
-                      pstmt.setString(3,movie.getFormat().toString());
-                      pstmt.setString(4,movie.getCertificate().toString());
-                      pstmt.setString(5,movie.getGenre().toString());
+        			  pstmt.setString(2, movie.getLanguage().getValue());
+                      pstmt.setString(3,movie.getFormat().getValue());
+                      pstmt.setString(4,movie.getCertificate().getValue());
+                      pstmt.setString(5,movie.getGenre().getValue());
                       pstmt.setInt(6,movie.getDurationHours());
                       pstmt.setInt(7,movie.getDurationMinutes());
                       pstmt.setInt(8,movie.getDurationSeconds());
@@ -127,10 +127,10 @@ public class MovieDAO {
                         Movie movie = new Movie();                        
                         movie.setMovieId(rs.getInt("movie_id"));
                         movie.setMovieName(rs.getString("movie_title"));
-                        movie.setLanguage(MovieLanguage.valueOf(rs.getString("language")));
-                        movie.setFormat(MovieFormat.valueOf(rs.getString("format")));
-                        movie.setCertificate(MovieCertificate.valueOf(rs.getString("certificate")));
-                        movie.setGenre(MovieGenre.valueOf(rs.getString("genre")));
+                        movie.setLanguage(MovieLanguage.fromValue(rs.getString("language")));
+                        movie.setFormat(MovieFormat.fromValue(rs.getString("format")));
+                        movie.setCertificate(MovieCertificate.fromValue(rs.getString("certificate")));
+                        movie.setGenre(MovieGenre.fromValue(rs.getString("genre")));
                         movie.setDurationHours(rs.getInt("durationHours"));
                         movie.setDurationMinutes(rs.getInt("durationMinutes"));
                         movie.setDurationSeconds(rs.getInt("durationSeconds"));
@@ -158,10 +158,10 @@ public class MovieDAO {
                         Movie movie = new Movie();                        
                         movie.setMovieId(rs.getInt("movie_id"));
                         movie.setMovieName(rs.getString("movie_title"));
-                        movie.setLanguage(MovieLanguage.valueOf(rs.getString("language")));
-                        movie.setFormat(MovieFormat.valueOf(rs.getString("format")));
-                        movie.setCertificate(MovieCertificate.valueOf(rs.getString("certificate")));
-                        movie.setGenre(MovieGenre.valueOf(rs.getString("genre")));
+                        movie.setLanguage(MovieLanguage.fromValue(rs.getString("language")));
+                        movie.setFormat(MovieFormat.fromValue(rs.getString("format")));
+                        movie.setCertificate(MovieCertificate.fromValue(rs.getString("certificate")));
+                        movie.setGenre(MovieGenre.fromValue(rs.getString("genre")));
                         movie.setDurationHours(rs.getInt("durationHours"));
                         movie.setDurationMinutes(rs.getInt("durationMinutes"));
                         movie.setDurationSeconds(rs.getInt("durationSeconds"));
@@ -191,10 +191,10 @@ public class MovieDAO {
                         Movie movie1 = new Movie();                        
        
                         movie1.setMovieName(rs.getString("movie_title"));
-                        movie1.setLanguage(MovieLanguage.valueOf(rs.getString("language")));
-                        movie1.setFormat(MovieFormat.valueOf(rs.getString("format")));
-                        movie1.setCertificate(MovieCertificate.valueOf(rs.getString("certificate")));
-                        movie1.setGenre(MovieGenre.valueOf(rs.getString("genre")));
+                        movie1.setLanguage(MovieLanguage.fromValue(rs.getString("language")));
+                        movie1.setFormat(MovieFormat.fromValue(rs.getString("format")));
+                        movie1.setCertificate(MovieCertificate.fromValue(rs.getString("certificate")));
+                        movie1.setGenre(MovieGenre.fromValue(rs.getString("genre")));
                         movie1.setDurationHours(rs.getInt("durationHours"));
                         movie1.setDurationMinutes(rs.getInt("durationMinutes"));
                         movie1.setDurationSeconds(rs.getInt("durationSeconds"));
@@ -239,28 +239,7 @@ public class MovieDAO {
 	                    statement.setInt(1, id);
 	                    try (ResultSet resultSet = statement.executeQuery()) {
 	                        if (resultSet.next()) {
-	                            int movieId = resultSet.getInt("id");
-	                            String title = resultSet.getString("movie_title");
-	                            String language = resultSet.getString("language");
-	                            String format = resultSet.getString("format");
-	                            String certificate = resultSet.getString("certificate");
-	                            String genre = resultSet.getString("genre");
-	                            int durationHours = resultSet.getInt("duration_hours");
-	                            int durationMinutes = resultSet.getInt("duration_minutes");
-	                            int durationSeconds = resultSet.getInt("duration_seconds");
-	                            String description = resultSet.getString("description");
-	                            String releaseDate = resultSet.getString("release_date");
-	                            String movieImageUrl = resultSet.getString("movie_image_url");
-	                            String movieBannerUrl = resultSet.getString("movie_banner_url");
-
-	                            // Create a Movie object with the retrieved information
-	                            Movie movie = new Movie(
-	                                movieId, title, language, format, certificate, genre, 
-	                                durationHours, durationMinutes, durationSeconds, description,
-	                                releaseDate, movieImageUrl, movieBannerUrl
-	                            );
-
-	                            return movie;
+	                            return new Movie(resultSet);
 	                        }
 	                    }
 	                }
@@ -269,7 +248,13 @@ public class MovieDAO {
 	            }
 	            return null; // Return null if movie not found
 	        }
+	        
+	        
+	        
 
+	        public static void main(String[] args) throws DAOExceptions {
+				showMovieById(25);
+			}
 		
         
 }

@@ -10,7 +10,7 @@ import com.fssa.movie.validatorException.UserValidateException;
 public class TestUserService {
 
 	public static User loginUser() {
-		User data = new User("dhanush","dhanush@gmail.com","Saran123","7358516714");
+		User data = new User("dhanush","vijay@gmail.com","Saran123","7358516714");
 
 		return data;
 	}
