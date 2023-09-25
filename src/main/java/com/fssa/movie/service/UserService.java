@@ -28,14 +28,13 @@ public class UserService {
 		}
 	}
 
-	public static User getUserById(int id) {
+	public static User getUserById(int id) throws DAOExceptions {
 		try {
 			return UserDAO.getUserById(id);
 		} catch (DAOExceptions e) {
 			// Handle the exception appropriately (e.g., log it, provide user-friendly error
 			// messages)
-			e.printStackTrace();
-			return null; // Return an appropriate response for failure
+			throw new DAOExceptions(e.getMessage());
 		}
 	}
 

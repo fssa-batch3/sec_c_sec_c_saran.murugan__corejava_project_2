@@ -2,6 +2,7 @@ package com.fssa.movie.DAO;
 
 
 import java.sql.Connection;
+import java.util.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,24 +27,21 @@ public class MovieDAO {
     
         try (Connection connection=GetConnection.getConnection()) {
             // Create insert statement
-            String insertQuery = "INSERT INTO movie_details (movie_title, language, format, certificate, genre, " +
-                                 "durationHours, durationMinutes, durationSeconds, description,releaseDate,movie_image_url,movie_banner_url,status)" +
-                                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
+            String insertQuery = "INSERT INTO movie_details (movie_title, language, format, certificate, genre,durationMinutes, description,releaseDate,movie_image_url,movie_banner_url,status)" +
+                                 "VALUES (?, ?, ?, ?, ?, ?,?,?,?,?,?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
                 // Set values for the prepared statement
                 preparedStatement.setString(1, movie.getMovieName());
-                preparedStatement.setString(2, movie.getLanguage().toString());
-                preparedStatement.setString(3, movie.getFormat().toString());
-                preparedStatement.setString(4, movie.getCertificate().toString());
-                preparedStatement.setString(5, movie.getGenre().toString());
-                preparedStatement.setInt(6, movie.getDurationHours());
-                preparedStatement.setInt(7, movie.getDurationMinutes());
-                preparedStatement.setInt(8, movie.getDurationSeconds());
-                preparedStatement.setString(9, movie.getDescription());
-                preparedStatement.setDate(10, java.sql.Date.valueOf(movie.getReleaseDate()));
-                preparedStatement.setString(11, movie.getMovieImage());
-                preparedStatement.setString(12, movie.getMovieBanner());
-                preparedStatement.setString(13, movie.getStatus().toString());
+                preparedStatement.setString(2, movie.getLanguage().getValue());
+                preparedStatement.setString(3, movie.getFormat().getValue());
+                preparedStatement.setString(4, movie.getCertificate().getValue());
+                preparedStatement.setString(5, movie.getGenre().getValue());
+                preparedStatement.setInt(6, movie.getDurationMinutes());
+                preparedStatement.setString(7, movie.getDescription());
+                preparedStatement.setDate(8, java.sql.Date.valueOf(movie.getReleaseDate()));
+                preparedStatement.setString(9, movie.getMovieImage());
+                preparedStatement.setString(10, movie.getMovieBanner());
+                preparedStatement.setString(11, movie.getStatus().toString());
 
                 // Execute insert statement
                 int rowsInserted = preparedStatement.executeUpdate();
@@ -66,16 +64,14 @@ public class MovieDAO {
         	
         	  try(Connection conn=GetConnection.getConnection()){
         		  
-        		  try(PreparedStatement pstmt = conn.prepareStatement("UPDATE movie_details SET movie_title=?, language=?, format=?, certificate=?, genre=? , durationHours=?, durationMinutes=?, durationSeconds=?, description=?, releaseDate=?,movie_image_url=?,movie_banner_url=? ,status=? WHERE movie_id=?")){
+        		  try(PreparedStatement pstmt = conn.prepareStatement("UPDATE movie_details SET movie_title=?, language=?, format=?, certificate=?, genre=? ,durationMinutes=?,description=?, releaseDate=?,movie_image_url=?,movie_banner_url=? ,status=? WHERE movie_id=?")){
         			  
         			  pstmt.setString(1, movie.getMovieName());
-        			  pstmt.setString(2, movie.getLanguage().toString());
-                      pstmt.setString(3,movie.getFormat().toString());
-                      pstmt.setString(4,movie.getCertificate().toString());
-                      pstmt.setString(5,movie.getGenre().toString());
-                      pstmt.setInt(6,movie.getDurationHours());
+        			  pstmt.setString(2, movie.getLanguage().getValue());
+                      pstmt.setString(3,movie.getFormat().getValue());
+                      pstmt.setString(4,movie.getCertificate().getValue());
+                      pstmt.setString(5,movie.getGenre().getValue());
                       pstmt.setInt(7,movie.getDurationMinutes());
-                      pstmt.setInt(8,movie.getDurationSeconds());
                       pstmt.setString(9,movie.getDescription());
                       pstmt.setDate(10, java.sql.Date.valueOf(movie.getReleaseDate()));
                       pstmt.setString(11,movie.getMovieImage());
@@ -126,13 +122,11 @@ public class MovieDAO {
                         Movie movie = new Movie();                        
                         movie.setMovieId(rs.getInt("movie_id"));
                         movie.setMovieName(rs.getString("movie_title"));
-                        movie.setLanguage(MovieLanguage.valueOf(rs.getString("language")));
-                        movie.setFormat(MovieFormat.valueOf(rs.getString("format")));
-                        movie.setCertificate(MovieCertificate.valueOf(rs.getString("certificate")));
-                        movie.setGenre(MovieGenre.valueOf(rs.getString("genre")));
-                        movie.setDurationHours(rs.getInt("durationHours"));
+                        movie.setLanguage(MovieLanguage.fromValue(rs.getString("language")));
+                        movie.setFormat(MovieFormat.fromValue(rs.getString("format")));
+                        movie.setCertificate(MovieCertificate.fromValue(rs.getString("certificate")));
+                        movie.setGenre(MovieGenre.fromValue(rs.getString("genre")));
                         movie.setDurationMinutes(rs.getInt("durationMinutes"));
-                        movie.setDurationSeconds(rs.getInt("durationSeconds"));
                         movie.setDescription(rs.getString("description"));
                         movie.setReleaseDate(rs.getDate("releaseDate").toLocalDate());
                         movie.setMovieImage(rs.getString("movie_image_url"));
@@ -157,18 +151,16 @@ public class MovieDAO {
                         Movie movie = new Movie();                        
                         movie.setMovieId(rs.getInt("movie_id"));
                         movie.setMovieName(rs.getString("movie_title"));
-                        movie.setLanguage(MovieLanguage.valueOf(rs.getString("language")));
-                        movie.setFormat(MovieFormat.valueOf(rs.getString("format")));
-                        movie.setCertificate(MovieCertificate.valueOf(rs.getString("certificate")));
-                        movie.setGenre(MovieGenre.valueOf(rs.getString("genre")));
-                        movie.setDurationHours(rs.getInt("durationHours"));
+                        movie.setLanguage(MovieLanguage.fromValue(rs.getString("language")));
+                        movie.setFormat(MovieFormat.fromValue(rs.getString("format")));
+                        movie.setCertificate(MovieCertificate.fromValue(rs.getString("certificate")));
+                        movie.setGenre(MovieGenre.fromValue(rs.getString("genre")));
                         movie.setDurationMinutes(rs.getInt("durationMinutes"));
-                        movie.setDurationSeconds(rs.getInt("durationSeconds"));
                         movie.setDescription(rs.getString("description"));
                         movie.setReleaseDate(rs.getDate("releaseDate").toLocalDate());
                         movie.setMovieImage(rs.getString("movie_image_url"));
                         movie.setMovieBanner(rs.getString("movie_banner_url"));
-                        CustomLogger.info("["+movie.getMovieId() + "," + movie.getMovieName() + "," +movie.getLanguage() + "," +movie.getFormat() + "," +movie.getCertificate() + "," +movie.getGenre() + "," +movie.getDurationHours() + "," +movie.getDurationMinutes() + "," +movie.getDurationSeconds() + "," +movie.getDescription() + "," +movie.getReleaseDate() + "," +movie.getMovieImage() + "," +movie.getMovieBanner()+"]");
+                        CustomLogger.info("["+movie.getMovieId() + "," + movie.getMovieName() + "," +movie.getLanguage() + "," +movie.getFormat() + "," +movie.getCertificate() + "," +movie.getGenre() + ","+movie.getDurationMinutes() + "," +movie.getDescription() + "," +movie.getReleaseDate() + "," +movie.getMovieImage() + "," +movie.getMovieBanner()+"]");
                         
                         movieList.add(movie); 
                     }
@@ -178,6 +170,7 @@ public class MovieDAO {
             return movieList;
         }
 
+        
         
         public static List<Movie> readAllMovies() throws SQLException {
             List<Movie> movieList = new ArrayList<>();
@@ -190,13 +183,11 @@ public class MovieDAO {
                         Movie movie1 = new Movie();                        
        
                         movie1.setMovieName(rs.getString("movie_title"));
-                        movie1.setLanguage(MovieLanguage.valueOf(rs.getString("language")));
-                        movie1.setFormat(MovieFormat.valueOf(rs.getString("format")));
-                        movie1.setCertificate(MovieCertificate.valueOf(rs.getString("certificate")));
-                        movie1.setGenre(MovieGenre.valueOf(rs.getString("genre")));
-                        movie1.setDurationHours(rs.getInt("durationHours"));
+                        movie1.setLanguage(MovieLanguage.fromValue(rs.getString("language")));
+                        movie1.setFormat(MovieFormat.fromValue(rs.getString("format")));
+                        movie1.setCertificate(MovieCertificate.fromValue(rs.getString("certificate")));
+                        movie1.setGenre(MovieGenre.fromValue(rs.getString("genre")));
                         movie1.setDurationMinutes(rs.getInt("durationMinutes"));
-                        movie1.setDurationSeconds(rs.getInt("durationSeconds"));
                         movie1.setDescription(rs.getString("description"));
                         movie1.setReleaseDate(rs.getDate("releaseDate").toLocalDate());
                         movie1.setMovieImage(rs.getString("movie_image_url"));
@@ -209,10 +200,50 @@ public class MovieDAO {
             
             return movieList;
         }
-        
       
+	        public static int getMovieIdByName(String movieName) throws DAOExceptions, SQLException {
+	    		try (Connection connection = GetConnection.getConnection()) {
+	    			// Create update statement using task id
+	    			String query = "SELECT movie_id FROM movie_details WHERE movie_title = ? ";
+	    			try (PreparedStatement pst = connection.prepareStatement(query)) {
+	    				pst.setString(1, movieName);
+	    				ResultSet rs = pst.executeQuery();
+	    				// .executeQuery() .. returns result set
+	    				// .executeUpdate() .. returns no of rows affected
+	    				int id = 0;
+	    				while (rs.next()) {
+	    					id = rs.getInt("movie_id");
+	    				}
+	    				return id;
+	    			}
+	    		} catch (SQLException e) {
+	    			throw new DAOExceptions("not get movieid by moviename", e);
+	    		}
+    	}
 
+	        public static Movie showMovieById(int id) throws DAOExceptions {
+	            try (Connection connection = GetConnection.getConnection()) {
+	                String query = "SELECT * FROM movie_details WHERE movie_id = ?";
+	                try (PreparedStatement statement = connection.prepareStatement(query)) {
+	                    statement.setInt(1, id);
+	                    try (ResultSet resultSet = statement.executeQuery()) {
+	                        if (resultSet.next()) {
+	                            return new Movie(resultSet);
+	                        }
+	                    }
+	                }
+	            } catch (SQLException e) {
+	                throw new DAOExceptions(e.getMessage());
+	            }
+	            return null; // Return null if movie not found
+	        }
+	        
+	        
+	        
 
+	        public static void main(String[] args) throws DAOExceptions {
+				showMovieById(25);
+			}
 		
         
 }

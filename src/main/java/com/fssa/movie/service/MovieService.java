@@ -26,8 +26,7 @@ public class MovieService {
 		if(MovieValidator.validate(movie)) {
 			MovieDAO.updateMovies(movie);
 		}
-		return true;	
-		
+		return true;		
 	}
    
 
@@ -59,6 +58,17 @@ public class MovieService {
 	   
    }
    
+   public static int getMovieIdByName(String movieName) throws MovieValidateException, SQLException, DAOExceptions {
+       if (MovieValidator.validateName(movieName)) {
+           return MovieDAO.getMovieIdByName(movieName);
+       }
+       return -1; 
+   }
     
+   
+   public Movie getMovieById(int id) throws DAOExceptions {
+       return MovieDAO.showMovieById(id);
+   }
+
    
 }

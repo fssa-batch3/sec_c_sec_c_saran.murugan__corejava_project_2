@@ -18,9 +18,7 @@ public class MovieValidator {
 		validateName(movie.getMovieName());
 		validateDescription(movie.getDescription());
 		validateReleaseDate(movie.getReleaseDate());
-		validateDurationHours(movie.getDurationHours());
 		validateDurationMinutes(movie.getDurationMinutes());
-		validateDurationSeconds(movie.getDurationSeconds());
 		return true;
 
 	}
@@ -77,19 +75,10 @@ public class MovieValidator {
     }
 
 	
-		public static boolean validateDurationHours(int durationHours) throws MovieValidateException {
-		// Check for name, name should only have alphabets
-		// For Simplicity, Check if name has length of 1.
-		if (durationHours <= 0 || durationHours > 12) {
-			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_DURATION_HOURS);
-		}
-		return true;
-	}
-
 	public static boolean validateDurationMinutes(int durationMinutes) throws MovieValidateException {
 		// Check for name, name should only have alphabets
 		// For Simplicity, Check if name has length of 1.
-		if (durationMinutes > 59) {
+		if (durationMinutes < 0) {
 			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_DURATION_MINUTES);
 		}
 		return true;
@@ -104,15 +93,6 @@ public class MovieValidator {
 		return true;
 	}
 
-
-	public static boolean validateDurationSeconds(int durationSeconds) throws MovieValidateException {
-
-		// For Simplicity, Check if name has length of 1.
-		if (durationSeconds > 59) {
-			throw new MovieValidateException(MovieValidatorErrors.INVALID_MOVIE_DURATION_SECONDS);
-		}
-		return true;
-	}
 
 	static LocalDate today = LocalDate.now();
 	// Expected format

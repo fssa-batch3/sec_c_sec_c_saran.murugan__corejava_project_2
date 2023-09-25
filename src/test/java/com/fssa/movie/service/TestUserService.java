@@ -4,13 +4,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.letzshow.util.CustomLogger;
+import com.fssa.movie.daoException.DAOExceptions;
 import com.fssa.movie.model.User;
 import com.fssa.movie.validatorException.UserValidateException;
 
 public class TestUserService {
 
 	public static User loginUser() {
-		User data = new User();
+		User data = new User("dhanush","vijay@gmail.com","Saran123","7358516714");
 
 		return data;
 	}
@@ -26,11 +27,11 @@ public class TestUserService {
 	}
 
 	@Test
-	void testGetUserById() throws UserValidateException {
+	void testGetUserById() throws UserValidateException, DAOExceptions {
 
 		User us = UserService.getUserById(1);
 		CustomLogger log = new CustomLogger();
-		CustomLogger.info(us);
+		CustomLogger.info(us.toString());
 
 	}
 }

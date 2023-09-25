@@ -19,7 +19,7 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 			
    @Test
     void testMovievalidate() throws MovieValidateException{
-	   Movie mv = new Movie( "leoBloodysweet",MovieLanguage.Tamil,MovieFormat.FORMAT_2D,MovieCertificate.UA,MovieGenre.Action,10, 20, 10, "this movie name is leo this about action movie", LocalDate.of(2023, 7, 21),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg","https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg",MovieStatus.UPCOMING);
+	   Movie mv = new Movie( "leoBloodysweet",MovieLanguage.ENGLISH,MovieFormat.FORMAT_2D,MovieCertificate.UNIVERSAL_ADULT,MovieGenre.ACTION,150,"this movie name is leo this about action movie", LocalDate.of(2023, 7, 21),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg","https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/ponniyin-selvan--part-2-et00348725-1680776467.jpg",MovieStatus.UPCOMING);
 	  Assertions.assertTrue(MovieValidator.validate(mv));
    }
 	
@@ -99,23 +99,6 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 	 
 	
 	@Test
-	  void testvalidateDurationHours() throws MovieValidateException{
-		Assertions.assertTrue( MovieValidator.validateDurationHours(10));
-	}
-	
-	 
-	@Test
-	 void testInvalidDurationHours() throws MovieValidateException {
-		try {
-			MovieValidator.validateDurationHours(0);
-			Assertions.fail("Validatename failed");
-		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DURATION_HOURS, ex.getMessage());
-		}
-	}
-
-
-	@Test
 	  void testvalidateDurationMinutes() throws MovieValidateException{
 		Assertions.assertTrue( MovieValidator.validateDurationMinutes(59));
 	}
@@ -132,21 +115,6 @@ import com.fssa.movie.validatorException.MovieValidatorErrors;
 	}
 	
 
-
-	@Test
-	  void testvalidateDurationSeconds() throws MovieValidateException{
-		Assertions.assertTrue( MovieValidator.validateDurationSeconds(59));
-	}
-	 
-	@Test
-	 void testInvalidDurationSeconds() throws MovieValidateException {
-		try {
-			MovieValidator.validateDurationSeconds(60);
-			Assertions.fail("Validatename failed");
-		} catch (MovieValidateException ex) {
-			Assertions.assertEquals(MovieValidatorErrors.INVALID_MOVIE_DURATION_SECONDS, ex.getMessage());
-		}
-	}
 	
 	@Test
 	  void testvalidateReleaseDate() throws MovieValidateException{
