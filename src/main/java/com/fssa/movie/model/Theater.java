@@ -1,3 +1,4 @@
+
 package com.fssa.movie.model;
 
 public class Theater {
@@ -10,9 +11,6 @@ public class Theater {
     private int numSeats;
 
     // Constructor
-    public Theater() {
-    	
-    }
     public Theater(String name, String location, String address, int numSeats) {
         this.name = name;
         this.location = location;

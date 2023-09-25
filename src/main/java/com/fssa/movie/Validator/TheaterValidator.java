@@ -1,3 +1,4 @@
+
 package com.fssa.movie.Validator;
 
 import com.fssa.movie.model.Theater;

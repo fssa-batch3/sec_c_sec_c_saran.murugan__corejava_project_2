@@ -32,7 +32,8 @@ public class Movie {
 
   
 	//default constructor
-	public Movie(int movieId2, String title, String language2, String format2, String certificate2, String genre2 ,int durationMinutes2, String description2, String releaseDate2, String movieImageUrl, String movieBannerUrl) {
+
+	public Movie(int movieId2, String title, String language2, String format2, String certificate2, String genre2, int durationHours2, int durationMinutes2, int durationSeconds2, String description2, String releaseDate2, String movieImageUrl, String movieBannerUrl) {
 
 	}
 
@@ -83,6 +84,7 @@ public class Movie {
         this.format = MovieFormat.fromValue(resultSet.getString("format"));
         this.certificate = MovieCertificate.fromValue(resultSet.getString("certificate"));
         this.genre = MovieGenre.fromValue(resultSet.getString("genre"));
+        this.durationMinutes = resultSet.getInt("durationMinutes");
         this.durationMinutes = resultSet.getInt("durationMinutes");
         this.description = resultSet.getString("description");
         this.releaseDate = resultSet.getDate("releaseDate").toLocalDate();

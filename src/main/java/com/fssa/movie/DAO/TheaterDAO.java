@@ -1,12 +1,10 @@
+
 package com.fssa.movie.DAO;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ArrayList;
+
 import com.fssa.letzshow.util.CustomLogger;
 import com.fssa.movie.connection.GetConnection;
 import com.fssa.movie.daoException.DAOExceptions;
@@ -40,35 +38,6 @@ public class TheaterDAO {
 	    }
 	    return true;
 	}
-
-	public static List<Theater> readAllTheaters() throws SQLException {
-	    List<Theater> theaterList = new ArrayList<>();
-	    String READ_QUERY = "SELECT * FROM theater_details";
-	    try (Connection conn = GetConnection.getConnection();
-	         PreparedStatement pstmt = conn.prepareStatement(READ_QUERY)) {
-
-	        try (ResultSet rs = pstmt.executeQuery()) {
-	            while (rs.next()) {
-	                Theater theater = new Theater();
-
-	                theater.setTheaterId(rs.getInt("theater_id"));
-	                theater.setName(rs.getString("theater_name"));
-	                theater.setLocation(rs.getString("location"));
-	                theater.setAddress(rs.getString("address"));
-	                theater.setNumSeats(rs.getInt("num_seats"));
-
-	                theaterList.add(theater);
-	            }
-	        }
-	    }
-
-	    return theaterList;
-	}
-
-
-
-
-
 
 
 }

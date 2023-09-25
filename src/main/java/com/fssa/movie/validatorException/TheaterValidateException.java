@@ -1,3 +1,4 @@
+
 package com.fssa.movie.validatorException;
 
 public class TheaterValidateException  extends Exception{

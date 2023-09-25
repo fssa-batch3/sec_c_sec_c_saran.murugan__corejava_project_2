@@ -42,6 +42,7 @@ public class MovieDAO {
                 preparedStatement.setString(9, movie.getMovieImage());
                 preparedStatement.setString(10, movie.getMovieBanner());
                 preparedStatement.setString(11, movie.getStatus().toString());
+                
 
                 // Execute insert statement
                 int rowsInserted = preparedStatement.executeUpdate();
@@ -71,13 +72,13 @@ public class MovieDAO {
                       pstmt.setString(3,movie.getFormat().getValue());
                       pstmt.setString(4,movie.getCertificate().getValue());
                       pstmt.setString(5,movie.getGenre().getValue());
-                      pstmt.setInt(7,movie.getDurationMinutes());
-                      pstmt.setString(9,movie.getDescription());
-                      pstmt.setDate(10, java.sql.Date.valueOf(movie.getReleaseDate()));
-                      pstmt.setString(11,movie.getMovieImage());
-                      pstmt.setString(12,movie.getMovieBanner());
-                      pstmt.setString(13, movie.getStatus().toString());
-                      pstmt.setInt(14,movie.getMovieId());
+                      pstmt.setInt(6,movie.getDurationMinutes());
+                      pstmt.setString(7,movie.getDescription());
+                      pstmt.setDate(8, java.sql.Date.valueOf(movie.getReleaseDate()));
+                      pstmt.setString(9,movie.getMovieImage());
+                      pstmt.setString(10,movie.getMovieBanner());
+                      pstmt.setString(11, movie.getStatus().toString());
+                      pstmt.setInt(12,movie.getMovieId());
 
                       int rowsAffected = pstmt.executeUpdate();
                       if (rowsAffected > 0) {
@@ -239,12 +240,7 @@ public class MovieDAO {
 	        }
 	        
 	        
-	        
-
-	        public static void main(String[] args) throws DAOExceptions {
-				showMovieById(25);
-			}
-		
+	        		
         
 }
 
