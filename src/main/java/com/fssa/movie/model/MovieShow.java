@@ -1,5 +1,6 @@
 package com.fssa.movie.model;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class MovieShow{
@@ -8,8 +9,13 @@ public class MovieShow{
     private int movieId; // ID of the associated movie
     private int theaterId; // ID of the associated theater
     private LocalTime showTime;
+    private LocalDate showDate; // Added showDate variable
 
-    // Constructors
+    
+
+  
+
+	// Constructors
     public MovieShow(int show_id, int movieId, int theaterId, LocalTime showTime) {
         this.show_id =show_id;
         this.movieId = movieId;
@@ -17,21 +23,38 @@ public class MovieShow{
         this.showTime = showTime;
     }
 
-    public MovieShow(int movieId, int theaterId, LocalTime showTime) {
+    public MovieShow(int movieId, int theaterId, LocalTime showTime, LocalDate showDate) {
         this.movieId = movieId;
         this.theaterId = theaterId;
         this.showTime = showTime;
+        this.showDate = showDate;
     }
 
-    // Getters and setters
-    public int getId() {
-        return show_id;
-    }
+    public MovieShow() {
+		// TODO Auto-generated constructor stub
+	}
 
-    public void setId(int id) {
-        this.show_id = id;
-    }
+	
+	public MovieShow(String movieTitle, String theaterName, String showTime2, String showDate2) {
+		// TODO Auto-generated constructor stub
+	}
 
+	public int getShow_id() {
+  		return show_id;
+  	}
+
+  	public void setShow_id(int show_id) {
+  		this.show_id = show_id;
+  	}
+
+  	public LocalDate getShowDate() {
+  		return showDate;
+  	}
+
+  	public void setShowDate(LocalDate showDate) {
+  		this.showDate = showDate;
+  	}
+   
     public int getMovieId() {
         return movieId;
     }
@@ -55,5 +78,9 @@ public class MovieShow{
     public void setShowTime(LocalTime showTime) {
         this.showTime = showTime;
     }
+
+
+
+	
 
 }

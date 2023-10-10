@@ -64,10 +64,15 @@ public class MovieService {
        }
        return -1; 
    }
-    
+
    
    public Movie getMovieById(int id) throws DAOExceptions {
        return MovieDAO.showMovieById(id);
+   }
+
+   
+   public List<Movie> showMovieListById(int id) throws DAOExceptions {
+       return MovieDAO.showMovieListById(id);
    }
 
    

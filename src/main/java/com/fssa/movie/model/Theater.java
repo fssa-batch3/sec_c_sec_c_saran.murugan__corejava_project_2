@@ -27,6 +27,10 @@ public class Theater {
 		this.numSeats = numSeats;
 	}
 
+	public Theater() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// Getters and setters
     public int getTheaterId() {
 		return theaterId;

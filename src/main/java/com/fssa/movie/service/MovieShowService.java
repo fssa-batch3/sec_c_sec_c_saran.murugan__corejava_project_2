@@ -1,5 +1,8 @@
 package com.fssa.movie.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.fssa.movie.DAO.MovieShowDAO;
 import com.fssa.movie.Validator.MovieShowValidator;
 import com.fssa.movie.daoException.DAOExceptions;
@@ -15,5 +18,21 @@ public class MovieShowService {
 	    }
 	    return true;
 	}
+	
+	 public static List<MovieShow> readAllShows() throws DAOExceptions {
+	        try {
+	            return MovieShowDAO.readAllShows();
+	        } catch (DAOExceptions e) {
+	            throw e; // You may want to handle or log the exception here
+	        }
+	    }
+	 
+	 public static List<Map<String, String>> getMovieShowDetails() throws DAOExceptions {
+	        try {
+	            return MovieShowDAO.getMovieShowDetails();
+	        } catch (DAOExceptions e) {
+	            throw e; // You may want to handle or log the exception here
+	        }
+	    }
 	
 }

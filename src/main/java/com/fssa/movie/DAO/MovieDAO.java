@@ -2,12 +2,12 @@ package com.fssa.movie.DAO;
 
 
 import java.sql.Connection;
-import java.util.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.fssa.letzshow.util.CustomLogger;
 import com.fssa.movie.connection.GetConnection;
 import com.fssa.movie.daoException.DAOExceptions;
@@ -23,6 +23,7 @@ import com.fssa.movie.validatorException.MovieValidateException;
 
 
 public class MovieDAO {
+	
     public static boolean createMovie(Movie movie) throws DAOExceptions {
     
         try (Connection connection=GetConnection.getConnection()) {
@@ -221,7 +222,6 @@ public class MovieDAO {
 	    			throw new DAOExceptions("not get movieid by moviename", e);
 	    		}
     	}
-
 	        public static Movie showMovieById(int id) throws DAOExceptions {
 	            try (Connection connection = GetConnection.getConnection()) {
 	                String query = "SELECT * FROM movie_details WHERE movie_id = ?";
@@ -239,8 +239,41 @@ public class MovieDAO {
 	            return null; // Return null if movie not found
 	        }
 	        
-	        
 	        		
+	        public static List<Movie> showMovieListById(int id) throws DAOExceptions {
+	            List<Movie> movieList = new ArrayList<>();
+	            try (Connection connection = GetConnection.getConnection()) {
+	                String query = "SELECT * FROM movie_details WHERE movie_id = ?";
+	                try (PreparedStatement statement = connection.prepareStatement(query)) {
+	                    statement.setInt(1, id);
+	                    try (ResultSet resultSet = statement.executeQuery()) {
+	                        while (resultSet.next()) {
+	                            Movie movie = new Movie(); // Create a new Movie object
+
+	                            movie.setMovieId(resultSet.getInt("movie_id"));
+	                            movie.setMovieName(resultSet.getString("movie_title"));
+	                            movie.setLanguage(MovieLanguage.fromValue(resultSet.getString("language")));
+	                            movie.setFormat(MovieFormat.fromValue(resultSet.getString("format")));
+	                            movie.setCertificate(MovieCertificate.fromValue(resultSet.getString("certificate")));
+	                            movie.setGenre(MovieGenre.fromValue(resultSet.getString("genre")));
+	                            movie.setDurationMinutes(resultSet.getInt("durationMinutes"));
+	                            movie.setDescription(resultSet.getString("description"));
+	                            movie.setReleaseDate(resultSet.getDate("releaseDate").toLocalDate());
+	                            movie.setMovieImage(resultSet.getString("movie_image_url"));
+	                            movie.setMovieBanner(resultSet.getString("movie_banner_url"));
+	                            movie.setStatus(MovieStatus.valueOf(resultSet.getString("status")));
+
+	                            movieList.add(movie); // Add the movie to the list
+	                        }
+	                    }
+	                }
+	            } catch (SQLException e) {
+	                throw new DAOExceptions(e.getMessage());
+	            }
+	            return movieList;
+	        }
+
+
         
 }
 

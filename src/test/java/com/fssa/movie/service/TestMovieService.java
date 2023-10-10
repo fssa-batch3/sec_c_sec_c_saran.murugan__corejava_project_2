@@ -62,7 +62,7 @@ public class TestMovieService {
 
           @Test
     	  void testDeleteMovieServiceLayer() throws DAOExceptions, MovieValidateException, SQLException{
-   	   	Assertions.assertTrue(MovieService.deleteMovie(11));
+   	   	Assertions.assertTrue(MovieService.deleteMovie(14));
      	  }
     
      

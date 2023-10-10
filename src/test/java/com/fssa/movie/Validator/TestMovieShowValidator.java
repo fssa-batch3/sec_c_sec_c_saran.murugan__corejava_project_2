@@ -1,5 +1,6 @@
 package com.fssa.movie.Validator;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +14,7 @@ public class TestMovieShowValidator {
 
 	@Test
 	void testMovieShowValidate() throws MovieShowValidateException {
-		MovieShow showTime = new MovieShow(1, 1, LocalTime.of(15, 30));
+		MovieShow showTime = new MovieShow(1, 1, LocalTime.of(15, 30),LocalDate.of(2023, 9, 20));
 		Assertions.assertTrue(MovieShowValidator.validateMovieShow(showTime));
 	}
 
