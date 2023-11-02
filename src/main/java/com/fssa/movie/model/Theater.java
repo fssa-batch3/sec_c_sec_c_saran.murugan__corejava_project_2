@@ -9,28 +9,38 @@ public class Theater {
     private String location;
     private String address;
     private int numSeats;
+    private int seatCost;
 
     // Constructor
-    public Theater(String name, String location, String address, int numSeats) {
+    public Theater(String name, String location, String address, int numSeats,int seatCost) {
         this.name = name;
         this.location = location;
         this.address = address;
         this.numSeats = numSeats;
+        this.seatCost = seatCost;
     }
 
-    public Theater(int theaterId, String name, String location, String address, int numSeats) {
+    public Theater(int theaterId, String name, String location, String address, int numSeats ,int seatCost) {
 		super();
 		this.theaterId = theaterId;
 		this.name = name;
 		this.location = location;
 		this.address = address;
 		this.numSeats = numSeats;
+		this.seatCost = seatCost;
+	}
+
+	public int getSeatCost() {
+		return seatCost;
+	}
+
+	public void setSeatCost(int seatCost) {
+		this.seatCost = seatCost;
 	}
 
 	public Theater() {
 		// TODO Auto-generated constructor stub
 	}
-
 	// Getters and setters
     public int getTheaterId() {
 		return theaterId;

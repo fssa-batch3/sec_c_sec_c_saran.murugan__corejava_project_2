@@ -11,7 +11,7 @@ public class TestTheaterValidator {
 
     @Test
     void testTheatervalidate() throws TheaterValidateException {
-        Theater theater = new Theater("Grand Theater", "https://maps.app.goo.gl/c4RuXc8UTgL6FeGW9", "City Center", 200);
+        Theater theater = new Theater("Grand Theater", "https://maps.app.goo.gl/c4RuXc8UTgL6FeGW9", "City Center", 200,190);
         Assertions.assertTrue(TheaterValidator.validateTheater(theater));
     }
 

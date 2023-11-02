@@ -18,14 +18,15 @@ public class TheaterDAO {
 	public static boolean createTheater(Theater theater) throws DAOExceptions {
 	    try (Connection connection = GetConnection.getConnection()) {
 	        // Create insert statement
-	        String insertQuery = "INSERT INTO theater_details (theater_name, location, address, num_seats)" +
-	                             "VALUES (?, ?, ?, ?)";
+	        String insertQuery = "INSERT INTO theater_details (theater_name, location, address, num_seats ,seat_cost)" +
+	                             "VALUES (?, ?, ?, ?, ?)";
 	        try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
 	            // Set values for the prepared statement
 	            preparedStatement.setString(1, theater.getName());
 	            preparedStatement.setString(2, theater.getLocation());
 	            preparedStatement.setString(3, theater.getAddress());
 	            preparedStatement.setInt(4, theater.getNumSeats());
+	            preparedStatement.setInt(5, theater.getSeatCost());
 
 	            // Execute insert statement
 	            int rowsInserted = preparedStatement.executeUpdate();
@@ -52,11 +53,13 @@ public class TheaterDAO {
                 while (rs.next()) {
                     Theater theater = new Theater();
                 
-                    theater.setTheaterId((rs.getInt("id"))); 
+                    theater.setTheaterId((rs.getInt("theater_id"))); 
                     theater.setName(rs.getString("theater_name"));
                     theater.setLocation(rs.getString("location"));
                     theater.setAddress(rs.getString("address"));
                     theater.setNumSeats(rs.getInt("num_seats"));
+                    theater.setSeatCost(rs.getInt("seat_cost"));
+
 
                     theaterList.add(theater);
                 }
@@ -86,6 +89,7 @@ public class TheaterDAO {
                     theaterDetails.setLocation(resultSet.getString("location"));
                     theaterDetails.setAddress(resultSet.getString("address"));
                     theaterDetails.setNumSeats(resultSet.getInt("num_seats"));
+                    theaterDetails.setSeatCost(resultSet.getInt("seat_cost"));
                 }
             }
 

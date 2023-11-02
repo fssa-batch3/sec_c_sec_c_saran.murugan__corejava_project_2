@@ -68,11 +68,30 @@ public class MovieShowDAO {
 		return showList;
 	}
 	
+	
+	// Delete the movies in database
+    public static boolean deleteMovies(int movieId) throws SQLException {
+        try (Connection conn=GetConnection.getConnection()) {
+            try (PreparedStatement pstmt = conn.prepareStatement("DELETE FROM movie_details WHERE movie_id=?")) {
+                pstmt.setInt(1, movieId);
+                int rowsAffected = pstmt.executeUpdate();
+                if (rowsAffected > 0) {
+                	CustomLogger.info("Movie deleted Successfully");
+                    return true; // movie deleted successfully
+                } else {
+                	CustomLogger.info("Failed to delete the movie");
+                    return false; // Failed to delete the movie
+                }
+            }
+        }
+    } 
+    
+	
 	public static List<Map<String, String>> getMovieShowDetails() throws DAOExceptions {
 	    List<Map<String, String>> showDetailsList = new ArrayList<>();
 
 	    try (Connection connection = GetConnection.getConnection()) {
-	        String query = "SELECT movie_show_times.movie_id, theater_details.theater_name,theater_details.num_seats, movie_show_times.show_time, movie_show_times.show_date, " +
+	        String query = "SELECT movie_show_times.movie_id, theater_details.theater_name,theater_details.num_seats,theater_details.seat_cost, movie_show_times.show_time, movie_show_times.show_date, " +
 	                "(SELECT movie_title FROM movie_details WHERE movie_id = movie_show_times.movie_id) AS selected_movie_title " +
 	                "FROM movie_show_times " +
 	                "JOIN movie_details ON movie_details.movie_id = movie_show_times.movie_id " +
@@ -100,21 +119,7 @@ public class MovieShowDAO {
 	    return showDetailsList;
 	}
 	
-	public static void main(String[] args) {
-	    try {
-	        List<Map<String, String>> showDetailsList = getMovieShowDetails();
 
-	        for (Map<String, String> showDetails : showDetailsList) {
-	            System.out.println("Movie Title: " + showDetails.get("movie_title"));
-	            System.out.println("Theater Name: " + showDetails.get("theater_name"));
-	            System.out.println("Show Time: " + showDetails.get("show_time"));
-	            System.out.println("Show Date: " + showDetails.get("show_date"));
-	            System.out.println(showDetails.get("num_seats"));
-	        }
-	    } catch (DAOExceptions e) {
-	        e.printStackTrace();
-	    }
-	}
 
 
 }

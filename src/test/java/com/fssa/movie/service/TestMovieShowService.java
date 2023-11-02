@@ -4,10 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import com.fssa.letzshow.util.CustomLogger;
 import com.fssa.movie.daoException.DAOExceptions;
 import com.fssa.movie.model.Movie;
@@ -20,7 +18,6 @@ public class TestMovieShowService {
 	public static MovieShow addNewShow() {
 
 		MovieShow data = new MovieShow(1, 1, LocalTime.of(10, 30), LocalDate.of(2023, 9, 20));
-
 		return data;
 	}
 

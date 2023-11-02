@@ -24,8 +24,7 @@ public class TestMovieService {
 		return data;
 	}
 	public static Movie updateMovies() {
-		Movie data=new Movie(19,"Captain Miller",MovieLanguage.ENGLISH,MovieFormat.FORMAT_2D,MovieCertificate.UNIVERSAL_ADULT,MovieGenre.ACTION,160,"Captain Miller is a Tamil movie starring Dhanush in a prominent role. It is written and directed by Arun Matheswaran.",LocalDate.of(2023, 12, 15),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/captain-miller-et00333139-1688130090.jpg"
-				,"https://www.wallsnapy.com/img_gallery/top-captain-miller-teaser-hd-image-wallpaper-1080px-2412744.jpg",MovieStatus.UPCOMING);
+		Movie data=new Movie(9,"Leo",MovieLanguage.TAMIL,MovieFormat.FORMAT_2D,MovieCertificate.UNIVERSAL_ADULT,MovieGenre.ACTION,150,"Leo is an action-thriller starring Vijay and Trisha Krishnan in the lead.",LocalDate.of(2023,10, 19),"https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/leo-et00351731-1675663884.jpg","https://m.media-amazon.com/images/M/MV5BOGQ2OTNmODQtNDRkOC00ODRmLTkwOWQtMmU1NjdmODQ0NTA3XkEyXkFqcGdeQXVyMTMxODA4Njgx._V1_FMjpg_UX1000_.jpg",MovieStatus.CURRENTLY_RUNNING);
 		
 		return data;
 	}
@@ -62,7 +61,7 @@ public class TestMovieService {
 
           @Test
     	  void testDeleteMovieServiceLayer() throws DAOExceptions, MovieValidateException, SQLException{
-   	   	Assertions.assertTrue(MovieService.deleteMovie(14));
+   	   	Assertions.assertTrue(MovieService.deleteMovie(16));
      	  }
     
      

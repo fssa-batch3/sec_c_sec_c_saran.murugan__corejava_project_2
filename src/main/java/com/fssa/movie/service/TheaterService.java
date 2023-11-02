@@ -21,6 +21,8 @@ public class TheaterService {
 		}
 		return true;	 
 	}
+    
+    
 
     public static List<Theater> readTheaters() throws  SQLException{
 		return TheaterDAO.readAllTheaters();
@@ -28,7 +30,7 @@ public class TheaterService {
 
  
     public static Theater getTheaterDetailsByID(int id) throws DAOExceptions {
-    	
     	return TheaterDAO.getTheaterDetailsById(id);
     	}
+      
     }

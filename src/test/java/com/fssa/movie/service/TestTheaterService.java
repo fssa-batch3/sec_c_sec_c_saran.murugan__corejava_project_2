@@ -12,7 +12,7 @@ import com.fssa.movie.validatorException.TheaterValidateException;
 public class TestTheaterService {
 
 	public static Theater addNewTheater() {
-		Theater data=new Theater("PVR Heritage RSL ECR Chennai","https://maps.app.goo.gl/c4RuXc8UTgL6FeGW9","1st Floor Near Uthandi Toll Gate Survey No: 3/488B1A And 3/700 No 17 Village, Uthandi, Chennai, Tamil Nadu 600119",300);
+		Theater data=new Theater("Rohini Silver Screens: Koyambedu","https://maps.app.goo.gl/PRUSxSUDnyh3VPVU8","141/2, Poonamallee High Rd, Koyambedu, Chennai, Tamil Nadu 600107",300,190);
 		
 		return data;
 	}
